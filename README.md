@@ -18,6 +18,21 @@ To get started, open your command prompt or terminal and paste `git clone https:
 
 Type `npm i` and let it run. After it finish, type `npm run start` and head to `https://localhost:4200/login` to start development.
 
+Please do not forget to add
+`environments/environment.ts` and `environments/environment.prod.ts` into the director and add the following firebase config:
+
+```
+firebaseConfig: {
+      apiKey: 'xxxxxxxxxxxxxxx',
+      authDomain: 'xxxxxxxxxxxxxxx',
+      projectId: 'xxxxxxxxxxxxxxx',
+      storageBucket: 'xxxxxxxxxxxxxxx',
+      messagingSenderId: 'xxxxxxxxxxxxxxx',
+      appId: 'xxxxxxxxxxxxxxx',
+      measurementId: 'xxxxxxxxxxxxxxx',
+   }
+```
+
 ## Development server
 
 Run `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
