@@ -1,0 +1,101 @@
+<div
+  class="modal-header text-center"
+  style="background-color: #ec4a89; color: white"
+>
+  <h5 class="modal-title" id="exampleModalLabel">Add New Application</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="addModal.close()"
+    mdbRipple
+  ></button>
+</div>
+<div class="modal-body">
+  <p *ngIf="notMatch === true" class="note note-danger">
+    <strong>Error!</strong> Password does not match! Please try again.
+  </p>
+  <div class="input-group mb-3">
+    <span
+      class="input-group-text"
+      id="basic-addon1"
+      style="width: 200px; color: #ec4a89"
+      >Application Name</span
+    >
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Application Name"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="passwordList.appName"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <span
+      class="input-group-text"
+      style="width: 200px; color: #ec4a89"
+      id="basic-addon1"
+      >Username</span
+    >
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Username/Email"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="passwordList.appUser"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <span
+      class="input-group-text"
+      style="width: 200px; color: #ec4a89"
+      id="basic-addon1"
+      >Password</span
+    >
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Password"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="passwordList.appPassword"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <span
+      class="input-group-text"
+      style="width: 200px; color: #ec4a89"
+      id="basic-addon1"
+      >Confirm Password</span
+    >
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Confirm Password"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="confirmPassword"
+    />
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-default"
+    style="background-color: #ec4a89; color: white"
+    (click)="addModal.close()"
+    mdbRipple
+  >
+    Close
+  </button>
+  <button
+    type="button"
+    class="btn btn-info"
+    (click)="addData(this.passwordList)"
+    mdbRipple
+  >
+    Add New +
+  </button>
+</div>

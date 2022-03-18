@@ -1,0 +1,198 @@
+<!-- Navbar -->
+<nav
+  class="navbar navbar-expand-lg navbar-light"
+  style="background-color: #ec4a89"
+>
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Navbar brand -->
+    <a class="nav-link text-white" aria-current="page" routerLink="/dashboard"
+      ><i class="fa-solid fa-fingerprint fa-2xl" style="color: gold"></i> &nbsp;
+      MyPassword</a
+    >
+
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="basicNavbar.toggle()"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      mdbRipple
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div
+      class="collapse navbar-collapse"
+      id="navbarSupportedContent"
+      mdbCollapse
+      #basicNavbar="mdbCollapse"
+    >
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link active text-white"
+            aria-current="page"
+            [routerLink]="'/dashboard'"
+            >Dashboard</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active text-white"
+            aria-current="page"
+            [routerLink]="'/login'"
+            (click)="logout()"
+            >Logout</a
+          >
+        </li>
+      </ul>
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<br />
+<!-- Navbar -->
+<div class="container">
+  <p *ngIf="noteSuccess === true" class="note note-success">
+    <strong>Success!</strong> Data has been successfully added / updated / deleted!
+  </p>
+  <p *ngIf="noteDanger === true" class="note note-danger">
+    <strong>Failed!</strong> Failed to add / update / delete data. Please try again!
+  </p>
+  <div class="row">
+    <div class="col-md-12">
+      <button
+        (click)="addApplication()"
+        class="btn btn-default"
+        style="background-color: #ec4a89; color: white"
+        type="button"
+        data-mdb-toggle="modal"
+        data-mdb-target="#exampleModal"
+        mdbRipple
+      >
+        Add New +
+      </button>
+    </div>
+  </div>
+
+  <br />
+  <div class="d-flex input-group w-auto">
+    <input
+      type="search"
+      class="form-control"
+      placeholder="Search..."
+      aria-label="Search"
+      [(ngModel)]="searchFilter"
+    />
+  </div>
+  <br />
+
+  <div class="row">
+    <div *ngIf="tableLoading === true" class="col-md-12 text-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <div *ngIf="tableLoading === false" class="col-md-12 table-responsive-sm">
+      <table class="table table-hover">
+        <thead style="background-color: #ec4a89; color: white">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Application</th>
+            <th scope="col">Username</th>
+            <th scope="col">Password</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let data of passwordList | filter: searchFilter;
+              let i = index
+            "
+          >
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+              <p class="text-start">{{ data.appName }}</p>
+            </td>
+            <td>
+              <div class="input-group sm-12" style="width: 200px">
+                <input
+                  [disabled]="true"
+                  type="text"
+                  class="form-control"
+                  placeholder="Username"
+                  aria-label="Username"
+                  aria-describedby="button-addon2"
+                  value="{{ data.appUser }}"
+                  
+                />
+                <button
+                  class="btn-sm btn-outline-default"
+                  style="color: #ec4a89; border-color: #ec4a89;"
+                  type="button"
+                  id="button-addon2"
+                  mdbRipple
+                  rippleColor="default"
+                  mdbRipple
+                  (click)="copyToClipboard(data.appUser)"
+                >
+                  <i class="fa-regular fa-clone"></i> Copy
+                </button>
+              </div>
+            </td>
+            <td>
+              <div class="input-group mb-3" style="width: 200px">
+                <input
+                  [disabled]="true"
+                  type="text"
+                  class="form-control"
+                  placeholder="Password"
+                  aria-label="Password"
+                  aria-describedby="button-addon2"
+                  value="{{ data.appPassword }}"
+                />
+                <button
+                  class="btn-sm btn-outline-default"
+                  type="button"
+                  style="color: #ec4a89; border-color: #ec4a89;"
+                  id="button-addon2"
+                  mdbRipple
+                  rippleColor="default"
+                  (click)="copyToClipboard(data.appPassword)"
+                >
+                  <i class="fa-regular fa-clone"></i> Copy
+                </button>
+              </div>
+            </td>
+            <td>
+              <div class="btn-group" role="group" aria-label="Basic example" style="width: 200px">
+                <button
+                  type="button"
+                  class="btn btn-outline-info"
+                  (click)="editApplication(data)"
+                  mdbRipple
+                >
+                  <i class="fa-regular fa-pen-to-square"></i> Edit
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-danger"
+                  (click)="deleteApplication(data)"
+                  mdbRipple
+                >
+                  Delete
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div
+  class="modal-header text-center"
+  style="background-color: #ec4a89; color: white"
+>
+  <h5 class="modal-title" id="exampleModalLabel">Delete Password</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="deleteModal.close()"
+    mdbRipple
+  ></button>
+</div>
+<div class="modal-body">
+  <p class="text-center">Are you sure to delete this password?</p>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-default"
+    style="background-color: #ec4a89; color: white"
+    (click)="deleteModal.close()"
+    mdbRipple
+  >
+    Cancel
+  </button>
+  <button type="button" class="btn btn-info" (click)="deleteData()" mdbRipple>
+    Delete Password
+  </button>
+</div>

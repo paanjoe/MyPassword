@@ -1,0 +1,100 @@
+<header>
+  <!-- Navbar -->
+  <nav
+    class="navbar navbar-expand-lg navbar-light"
+    style="background-color: #ec4a89"
+  >
+    <div class="container-fluid">
+      <button
+        class="navbar-toggler"
+        type="button"
+        (click)="jumbotronExample.toggle()"
+        aria-controls="jumbotronExample"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        mdbRipple
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+      <div
+        mdbCollapse
+        #jumbotronExample="mdbCollapse"
+        class="collapse navbar-collapse"
+        id="jumbotronExample"
+      >
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link text-white" aria-current="page" routerLink="/"
+              ><i
+                class="fa-solid fa-fingerprint fa-2xl"
+                style="color: gold"
+              ></i>
+              &nbsp; MyPassword</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar -->
+
+  <!-- Jumbotron -->
+</header>
+<div class="p-5 text-center bg-light">
+  <div class="row">
+    <div class="col-md"></div>
+    <div class="col-md">
+      <div class="card text-center" style="color: #ec4a89">
+        <div class="card-body">
+          <br />
+          <h3>
+            <i class="fa-solid fa-fingerprint fa-2xl" style="color: gold"></i>
+            &nbsp; MyPassword
+          </h3>
+          <br />
+          <p *ngIf="badlogin === true" class="note note-danger">
+            Incorrect Email or Password. Please try again.
+          </p>
+          <p *ngIf="bademail === true" class="note note-danger">
+            Please enter a valid Email Address.
+          </p>
+          <input
+          type="email"
+          class="form-control"
+          placeholder="Email"
+          aria-label="Email"
+          aria-describedby="basic-addon1"
+          [(ngModel)]="userName"
+          />
+          <br />
+          <input
+          type="password"
+          class="form-control"
+          placeholder="Password"
+          aria-label="Password"
+          aria-describedby="basic-addon1"
+          [(ngModel)]="password"
+          />
+          <br />
+          <div class="d-grid gap-2">
+            <a
+              class="btn btn-default text-white"
+              style="background-color: #ec4a89"
+              type="button"
+              (click)="login()"
+              >
+              <div *ngIf="loginLoading === false">Login</div>
+              <div *ngIf="loginLoading === true" class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </a>
+          </div>
+          <br />
+          <a routerLink="/forgot" style="color: #ec4a89">Forgot Password?</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md"></div>
+  </div>
+</div>
+
